@@ -1,0 +1,11 @@
+# Volumes
+monitoring/db/
+monitoring/grafana/
+
+# Logs
+*.log
+
+# credenciais (se existirem)
+*.env
+*.secret
+
