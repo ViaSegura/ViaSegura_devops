@@ -62,10 +62,26 @@ services:
     environment:
       - GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app
       - TZ=America/Sao_Paulo
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9091:9090"
+    networks:
+      - monitoring
 
   toolbox:
     image: curlimages/curl
     command: sleep infinity
+    networks:
+      - monitoring
+  node_exporter:
+    image: prom/node-exporter
+    container_name: node_exporter
+    ports:
+      - "9100:9100"
     networks:
       - monitoring
 
